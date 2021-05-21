@@ -19,23 +19,23 @@ export default class LatestMovieReviews extends Component{
     fetch('https://api.nytimes.com/svc/movies/v2/reviews/all.json?api-key=97htVyH23LxGLLg6lSseATti1oWywLSQ')
     .then(r => r.json())
     .then(reviews => this.setState({
-                            reviews: reviews}))
+                            reviews: reviews.results}))
   }
 
-  renderMovies = () => {
-    return this.state.reviews.map(review =>{
-       return(
-          <div>
-            {review.display_title}
-          </div>
-      )
-    })
-  }
+  // renderMovies = () => {
+  //   return this.state.reviews.map(review =>{
+  //      return(
+  //         <div>
+  //           {review.display_title}
+  //         </div>
+  //     )
+  //   })
+  // }
   // fetch('https://api.nytimes.com/svc/movies/v2/reviews/all.json?api-key=97htVyH23LxGLLg6lSseATti1oWywLSQ&query=<search_term>')
   // .then(r => r.json())
   // .then(reviews => console.log(reviews))
 
   render(){
-    return <div className='latest-movie-reviews'>{this.renderMovies()}</div>
+    return <div className='latest-movie-reviews'><MovieReviews latest={this.state.reviews}/></div>
   }
 }
